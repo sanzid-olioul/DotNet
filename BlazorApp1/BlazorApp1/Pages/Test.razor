@@ -1,0 +1,46 @@
+﻿@page "/list"
+<h3> Hello, @userName ... Welcome to our <b>application</b></h3>
+
+<button @onclick="@(()=>{userName= "Olioul";})"> Change Name</button>
+
+@if(testNum == 1){
+    <p>Num is one</p>
+}else{
+    <p>Num is not one.</p>
+}
+
+@foreach(var name in names)
+{
+    <p>
+        @((MarkupString) name)
+    </p>
+}
+
+@code{
+    private string userName = "Sanzid";
+    private int testNum = 1;
+    private List<string> names;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        names = new List<string>
+        {
+
+             "Value 1",
+              "<b>Value 2</b>",
+               "Value 3",
+
+                "Value 4",
+
+                 "Value 5",
+                  "Value 6",
+                   "Value 7",
+               "Value 8",
+               "Value 9",
+               "Value 10",
+             "Value 11"
+        };
+    }
+
+}

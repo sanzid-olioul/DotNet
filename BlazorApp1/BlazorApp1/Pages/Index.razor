@@ -1,0 +1,57 @@
+﻿@page "/"
+@using BlazorApp1.Pages.NewFolder
+
+<label for="email-show">Show Email</label>
+<input type="checkbox" name="email-show" id="email-show" @bind="DisplayEmail" />
+@if (Contacts != null)
+{
+    @foreach (var contact in Contacts)
+    {
+        <ContactComponent Contacts="@contact" ShowEmail="@DisplayEmail" DeleteContact="Deletecontact" />
+    }
+    <br />
+}
+else
+{
+    <p>Loading...</p>
+}
+
+
+
+<MyTextbox placeholder="Placeholder 01" type="text" disabled="disabled"/>
+
+@code{
+    private List<Contact> Contacts;
+    private bool DisplayEmail = true;
+    private void Deletecontact(Contact contact)
+    {
+        Contacts.Remove(contact);
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Delay(5000);
+        Contacts = new List<Contact>
+        {
+            new Contact
+            {
+                FirstName= "Sanzid Olioul",
+                LastName = "Tanzid",
+                Email = "sanzid94@gmail.com"
+            },
+            new Contact
+            {
+                FirstName= "Tania",
+                LastName = "Sultana",
+                Email = "taniasultanaanni@gmail.com",
+            },
+            new Contact
+            {
+                FirstName= "Nafizur",
+                LastName = "Rahman",
+                Email = "nafizurrahman@gmail.com",
+            },
+        };
+        base.OnInitializedAsync();
+    }
+}
