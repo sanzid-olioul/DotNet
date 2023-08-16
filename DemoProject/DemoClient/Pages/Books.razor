@@ -1,0 +1,48 @@
+﻿@page "/books"
+@using Models
+@inject SingletonBook singletonBook
+
+<ul class="list-group">
+@foreach(var book in singletonBook.BookList)
+{
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <p>@book.Name</p>
+            <p>
+                @book.Author
+            </p>
+            <p>
+                @book.Description
+            </p>
+
+            <button class="btn btn-primary">
+                <a class="text-black"  href="/update/@book.Id">
+                     Edit
+                 </a>
+            </button>
+            <button @onclick="(()=>{DeleteData(book);})">
+                Delete
+            </button class="btn btn-danger">
+            
+        </li>
+}
+</ul>
+
+@code {
+    //public List<Book> BookList { get; set; } = new();
+    [Inject]
+    public IBookService bookService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var _books = await bookService.GetBooks();
+
+       singletonBook.BookList = _books.ToList();
+    }
+
+    private async void DeleteData(Book book)
+    {
+        singletonBook.BookList.Remove(book);
+        var msg = await bookService.DeleteBook(book);
+    }
+
+}

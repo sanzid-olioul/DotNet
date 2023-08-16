@@ -1,0 +1,12 @@
+H:\Blazor\DemoProject\DemoProject\Shared\bin\Debug\net7.0\DemoProject.Shared.deps.json
+H:\Blazor\DemoProject\DemoProject\Shared\bin\Debug\net7.0\DemoProject.Shared.dll
+H:\Blazor\DemoProject\DemoProject\Shared\bin\Debug\net7.0\DemoProject.Shared.pdb
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.csproj.AssemblyReference.cache
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.GeneratedMSBuildEditorConfig.editorconfig
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.AssemblyInfoInputs.cache
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.AssemblyInfo.cs
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.csproj.CoreCompileInputs.cache
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.dll
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\refint\DemoProject.Shared.dll
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\DemoProject.Shared.pdb
+H:\Blazor\DemoProject\DemoProject\Shared\obj\Debug\net7.0\ref\DemoProject.Shared.dll

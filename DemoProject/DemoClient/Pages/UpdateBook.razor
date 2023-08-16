@@ -1,0 +1,40 @@
+﻿@page "/update/{id:int}"
+@using Models
+@inject SingletonBook singletonBook
+@inject NavigationManager NavManager
+<h3>CreateBook</h3>
+
+<EditForm class="form-control" Model="@book" OnSubmit="@SubmitBook">
+
+    <InputText class="form-text" @bind-Value="book.Name" /><br />
+    <InputText class="form-text" @bind-Value="book.Author" /><br />
+    <InputText class="form-text" @bind-Value="book.Description" /><br />
+    <button type="submit">Submit</button>
+</EditForm>
+
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Book book { get; set; } =new();
+    private int index;
+    [Inject]
+    public IBookService bookService { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        book = singletonBook.BookList.Where(b => b.Id == Id).FirstOrDefault();
+        index = singletonBook.BookList.IndexOf(book);
+    }
+
+
+    private async void SubmitBook()
+    {
+        await bookService.UpdateBook(book);
+
+        singletonBook.BookList[index] = book;
+        NavManager.NavigateTo("./books");
+    }
+}
