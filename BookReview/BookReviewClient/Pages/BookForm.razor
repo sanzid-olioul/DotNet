@@ -1,0 +1,67 @@
+﻿@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+
+<MudOverlay @bind-Visible="overlay" DarkBackground="true">
+    <MudCard Class="pa-4 mt-15 mx-auto">
+        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+            <MudTextField @bind-Value="BookModel.Name" T="string" Variant="Variant.Outlined" Label=" Book Name" Required="true" RequiredError="Book name is required!" />
+            <MudTextField @bind-Value="BookModel.AuthorName" T="string" Variant="Variant.Outlined" Label="Author Name" Required="true" RequiredError="Author name is required!" />
+            <MudDatePicker Variant="Variant.Outlined" @bind-Date="BookModel.PublishedAt" For="@(() => BookModel.PublishedAt)" Label="Published Date" />
+            <MudSlider Min="0" Max="5" Step="step" @bind-Value="BookModel.Rating" T="float" Color="Color.Info">Value: @BookModel.Rating.ToString()</MudSlider>
+                
+            <MudTextField T="string" Label="Book Description" Variant="Variant.Outlined" @bind-Value="@BookModel.Description" Text="@BookModel.Description" Lines="5" />
+            <MudSelect @bind-Value="BookModel.PrimaryLanguage" Label="Primary Language" Variant="Variant.Outlined">
+                <MudSelectItem Value="@Models.Languages.Bangla" />
+                <MudSelectItem Value="@Models.Languages.English" />
+                <MudSelectItem Value="@Models.Languages.Spanish" />
+            </MudSelect>
+        </MudForm>
+            <MudButton Variant="Variant.Filled" Class="mt-2" Color="Color.Primary" DisableElevation="true" OnClick="Save">Save</MudButton>
+        <MudButton Variant="Variant.Filled" Class="mt-2" Color="Color.Warning" DisableElevation="true" OnClick="Cancel">Cancel</MudButton>
+    </MudCard>
+</MudOverlay>
+
+@code {
+    [Parameter]
+    public Models.Book BookModel { get; set; }
+    [Parameter]
+    public bool BookCreate { get; set; }
+    [Parameter]
+    public bool BookUpdate { get; set; }
+    [Parameter]
+    public EventCallback<bool> CloseOverlay { get; set; }
+
+    [Parameter]
+    public EventCallback<Models.Book> UpdateBookList { get; set; }
+    [Inject]
+    public IBookService bookService { get; set; }
+    bool success;
+    public bool overlay;
+    string[] errors = { };
+    float step = (float).1;
+    MudTextField<string> pwField1;
+    MudForm form;
+
+    protected override async Task OnInitializedAsync()
+    {
+        overlay = true;
+
+    }
+    public void Cancel()
+    {
+        CloseOverlay.InvokeAsync(true);
+    }
+    public async Task Save()
+    {
+        if (BookCreate == true)
+        {
+            var res = await bookService.CreateBook(BookModel);
+        }
+        if(BookUpdate==true)
+        {
+            var res = await bookService.UpdateBook(BookModel);
+        }
+        await UpdateBookList.InvokeAsync(BookModel);
+        await CloseOverlay.InvokeAsync(true);
+    }
+}

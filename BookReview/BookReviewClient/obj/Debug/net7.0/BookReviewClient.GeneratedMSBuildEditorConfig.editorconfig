@@ -1,0 +1,57 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BookReviewClient
+build_property.RootNamespace = BookReviewClient
+build_property.ProjectDir = C:\Users\sanzi\Desktop\GitUpDotNet\DotNet\BookReview\BookReviewClient\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\sanzi\Desktop\GitUpDotNet\DotNet\BookReview\BookReviewClient
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/Book.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9vay5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/BookForm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va0Zvcm0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/BookUsingDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1VzaW5nRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/Components/BookDialogForm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xCb29rRGlhbG9nRm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/Components/DeleteConfermationDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEZWxldGVDb25mZXJtYXRpb25EaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-b4hogz44e9
+
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-gwkxqte65k

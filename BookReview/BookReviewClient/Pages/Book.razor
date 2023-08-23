@@ -1,0 +1,98 @@
+﻿@page "/book"
+@using Models
+@using Components
+@inject IDialogService Dialog
+
+<MudPaper>
+    <MudToolBar>
+        <MudText>Books</MudText>
+        <MudButton OnClick="CreateBookForm"> <MudIcon Icon="@Icons.Material.Outlined.Add" />Add Contact</MudButton>
+    </MudToolBar>
+    <MudTable Items="@BookList" Hover="true">
+        <HeaderContent>
+            <MudTh>Book Name</MudTh>
+            <MudTh>Author Name</MudTh>
+            <MudTh>Published Date</MudTh>
+            <MudTh>Description</MudTh>
+            <MudTh>Primary Language</MudTh>
+            <MudTh>Rating</MudTh>
+            <MudTh>Action</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Book Name">@context.Name</MudTd>
+            <MudTd DataLabel="Author Name">@context.AuthorName</MudTd>
+            <MudTd DataLabel="Published Date">@context.PublishedAt</MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+            <MudTd DataLabel="Primary Language">@context.PrimaryLanguage</MudTd>
+            <MudTd DataLabel="Rating">@context.Rating</MudTd>
+            <MudTd DataLabel="Action"> <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="(()=>UpdateBookForm(context))"></MudIconButton> <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="(()=>DeleteBook(context))"></MudIconButton></MudTd>
+        </RowTemplate>
+    </MudTable>
+
+</MudPaper>
+
+
+@if(BookCreate ==true || BookUpdate == true)
+{
+    <BookForm BookModel="book" BookCreate="BookCreate" CloseOverlay="CloseOverlay" BookUpdate="BookUpdate" UpdateBookList="UpdateBookList" />
+}
+
+@code {
+    [Inject]
+    public IBookService bookService { get; set; }
+    public List<Models.Book> BookList = new List<Models.Book>();
+    Models.Book book { get; set; }
+    public bool BookCreate = false;
+    public bool BookUpdate = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var _book = await bookService.GetBooks();
+        BookList = _book.ToList();
+    }
+    bool _state = false;
+
+
+
+
+    private async Task DeleteBook(Models.Book book)
+    {
+
+        var parameters = new DialogParameters<DeleteConfermationDialog>();
+        parameters.Add(x => x.ContentText, "Do you really want to delete these records? This process cannot be undone.");
+        parameters.Add(x => x.ButtonText, "Delete");
+        parameters.Add(x => x.Color, Color.Error);
+
+        var dialog = await Dialog.ShowAsync<DeleteConfermationDialog>("Delete!", parameters);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await bookService.DeleteBook(book);
+            BookList.Remove(book);
+        }
+    }
+
+    private void CreateBookForm()
+    {
+        book = new();
+        BookCreate = true;
+    }
+    private void UpdateBookForm(Models.Book book)
+    {
+        this.book = book;
+        BookUpdate = true;
+    }
+    private async Task UpdateBookList(Models.Book book)
+    {
+        if (BookCreate==true)
+        {
+            BookList.Add(book);
+
+        }
+    }
+    private async Task CloseOverlay(bool flag)
+    {
+        BookCreate = false;
+        BookUpdate = false;
+    }
+}
