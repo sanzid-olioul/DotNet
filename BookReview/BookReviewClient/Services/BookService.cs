@@ -1,4 +1,5 @@
 ﻿using Models;
+using MudBlazor.Extensions;
 using System.Net.Http.Json;
 namespace BookReviewClient.Services
 {
@@ -10,16 +11,16 @@ namespace BookReviewClient.Services
             _httpClient = httpClient;
         }
 
-        public async Task<bool> CreateBook(Book book)
+        public async Task<Book> CreateBook(Book book)
         {
             try
             {
-                await _httpClient.PostAsJsonAsync("api/Book", book);
-                return true;
+                var response = await _httpClient.PostAsJsonAsync("api/Book", book);
+                return await response.Content.ReadFromJsonAsync<Book>();
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 

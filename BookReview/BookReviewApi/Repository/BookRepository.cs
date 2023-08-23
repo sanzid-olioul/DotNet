@@ -38,16 +38,17 @@ namespace BookReviewApi.Repository
             }
             
         }
-        public async Task<bool> CreateBook(Book book)
+        public async Task<Book> CreateBook(Book book)
         {
             try
             {
                 await _dbContext.Books.AddAsync(book);
-                return await Save();
+                await Save();
+                return book;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 

@@ -6,7 +6,7 @@ namespace BookReviewClient.Services
     {
         public Task<IEnumerable<Book>> GetBooks();
         public Task<Book> GetBook(int id);
-        public Task<bool> CreateBook(Book book);
+        public Task<Book> CreateBook(Book book);
         public Task<bool> UpdateBook(Book book);
         public Task<bool> DeleteBook(Book book);
     }

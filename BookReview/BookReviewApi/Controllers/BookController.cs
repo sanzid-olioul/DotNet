@@ -40,8 +40,12 @@ namespace BookReviewApi.Controllers
         {
             try
             {
-                await _bookRepository.CreateBook(book);
-                return Ok("Created Successfully");
+                var result = await _bookRepository.CreateBook(book);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return BadRequest("Somwthing went wrong!");
             }
             catch (Exception ex)
             {

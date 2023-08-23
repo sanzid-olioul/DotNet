@@ -6,7 +6,7 @@ namespace BookReviewApi.Interface
     {
         public Task<ICollection<Book>> GetBooks();
         public Task<Book> GetBook(int id);
-        public Task<bool> CreateBook(Book book);
+        public Task<Book> CreateBook(Book book);
         public Task<bool> UpdateBook(Book book);
         public Task<bool> DeleteBook(Book book);
         public Task<bool> IsBookExists(int id);
