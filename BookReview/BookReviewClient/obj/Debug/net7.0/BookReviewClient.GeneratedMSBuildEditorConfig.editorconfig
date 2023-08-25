@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1VzaW5nRGlhbG9nLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/BookUsingDialogGeneric.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1VzaW5nRGlhbG9nR2VuZXJpYy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sanzi/Desktop/GitUpDotNet/DotNet/BookReview/BookReviewClient/Pages/Components/BookDialogForm.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xCb29rRGlhbG9nRm9ybS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

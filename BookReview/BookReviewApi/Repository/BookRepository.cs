@@ -52,12 +52,17 @@ namespace BookReviewApi.Repository
             }
         }
 
-        public async Task<bool> DeleteBook(Book book)
+        public async Task<bool> DeleteBook(int id)
         {
             try
             {
-                _dbContext.Books.Remove(book);
-                return await Save();
+                var book = await _dbContext.Books.FindAsync(id);
+                if(book != null)
+                {
+                    _dbContext.Books.Remove(book);
+                    return await Save();
+                }
+                return false;
             }
             catch(Exception ex)
             {

@@ -1,0 +1,107 @@
+﻿@page "/gdbook"
+@using Models
+@using Components
+@inject IDialogService Dialog
+
+<MudPaper>
+    <MudToolBar>
+        <MudText>Books</MudText>
+        <MudButton OnClick="CreateBook"> <MudIcon Icon="@Icons.Material.Outlined.Add" />Add Contact</MudButton>
+    </MudToolBar>
+    <MudTable Items="BookList" Hover="true">
+        <HeaderContent>
+            <MudTh>Book Name</MudTh>
+            <MudTh>Author Name</MudTh>
+            <MudTh>Published Date</MudTh>
+            <MudTh>Description</MudTh>
+            <MudTh>Primary Language</MudTh>
+            <MudTh>Rating</MudTh>
+            <MudTh>Action</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Book Name">@context.Name</MudTd>
+            <MudTd DataLabel="Author Name">@context.AuthorName</MudTd>
+            <MudTd DataLabel="Published Date">@context.PublishedAt</MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+            <MudTd DataLabel="Primary Language">@context.PrimaryLanguage</MudTd>
+            <MudTd DataLabel="Rating">@context.Rating</MudTd>
+            <MudTd DataLabel="Action"> <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="(()=>UpdateBook(context))"></MudIconButton> <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="(()=>DeleteBook(context))"></MudIconButton></MudTd>
+        </RowTemplate>
+    </MudTable>
+
+</MudPaper>
+
+
+
+
+@code {
+    [Inject]
+    public IGenericObjectService<Book> bookService { get; set; }
+    public List<Book> BookList = new();
+    Models.Book book { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var _book = await bookService.GetObjects("/api/Book");
+        BookList = _book.ToList();
+    }
+    bool _state = false;
+
+
+    public async Task CreateBook()
+    {
+        var parameters = new DialogParameters<BookDialogForm>();
+        @*parameters.Add(x => x.BookModel,new Book() );*@
+        parameters.Add(x => x.ButtonText, "Create");
+
+
+        var dialog = await Dialog.ShowAsync<BookDialogForm>("Create", parameters);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            var model = result.Data as Book;
+            var temp_res = await bookService.CreateObject("/api/Book",model);
+            if (temp_res != null)
+            {
+                BookList.Add(temp_res);
+            }
+
+        }
+    }
+
+    private async Task DeleteBook(Models.Book book)
+    {
+
+        var parameters = new DialogParameters<DeleteConfermationDialog>();
+        parameters.Add(x => x.ContentText, "Do you really want to delete these records? This process cannot be undone.");
+        parameters.Add(x => x.ButtonText, "Delete");
+        parameters.Add(x => x.Color, Color.Error);
+
+        var dialog = await Dialog.ShowAsync<DeleteConfermationDialog>("Delete!", parameters);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await bookService.DeleteObject($"/api/Book/{book.Id}");
+            BookList.Remove(book);
+        }
+    }
+
+
+    private async Task UpdateBook(Models.Book book)
+    {
+        var parameters = new DialogParameters<BookDialogForm>();
+        parameters.Add(x => x.BookModel, book);
+        parameters.Add(x => x.ButtonText, "Update");
+
+
+        var dialog = await Dialog.ShowAsync<BookDialogForm>("Update", parameters);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            @*BookList.Add(parameters.Get<Models.Book>("BookModel"));*@
+            await bookService.UpdateObject("/api/Book",parameters.Get<Models.Book>("BookModel"));
+        }
+    }
+
+}

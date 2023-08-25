@@ -8,7 +8,7 @@ namespace BookReviewApi.Interface
         public Task<Book> GetBook(int id);
         public Task<Book> CreateBook(Book book);
         public Task<bool> UpdateBook(Book book);
-        public Task<bool> DeleteBook(Book book);
+        public Task<bool> DeleteBook(int id);
         public Task<bool> IsBookExists(int id);
         public Task<bool> Save();
     }

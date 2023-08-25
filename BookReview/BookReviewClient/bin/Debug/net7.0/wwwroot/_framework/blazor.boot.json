@@ -203,14 +203,14 @@
       "netstandard.dll": "sha256-OYYuPT3JUknj4LdYIa58zF7kDB3tCnLzjCSuhEjtKXM=",
       "System.Private.CoreLib.dll": "sha256-EVS7zPxPV\/41g2mzPwdXtwiigWxI\/SeAHme1IgyD6tc=",
       "Models.dll": "sha256-ibVQIQW0AQu6XDqsHxwuujYaAHHz5\/OulJiY35vvs\/c=",
-      "BookReviewClient.dll": "sha256-h+bDJNjRi5MVlvctWJqKtCW\/4tqtQTrATfqsGgbH48c="
+      "BookReviewClient.dll": "sha256-i3ZsR+GTAuAPMJ2xsSuaix4aWnHXk3zQVj74gePvDWk="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "Models.pdb": "sha256-I0rRzog1QcU+mc7E22bt75cSUyQVuV9JMBuR62kTExA=",
-      "BookReviewClient.pdb": "sha256-zoAfsbQKXoPCCO44ug8d7ZFqsbfINxbBDHHDdwJQAr4="
+      "BookReviewClient.pdb": "sha256-4e1TKlU\/gmProzqEMZAxQf3ORCt3ZMFHzcarB27c0tM="
     },
     "runtime": {
       "dotnet.7.0.5.sn5em8k212.js": "sha256-codB25EodaFEP43MDCfMBuKXU4LqurUKnQrpoMIFnPs=",

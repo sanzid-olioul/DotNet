@@ -52,35 +52,27 @@ namespace BookReviewApi.Controllers
                 return BadRequest(ex);
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBook(int id,Book book)
+        [HttpPut]
+        public async Task<IActionResult> UpdateBook(Book book)
         {
-            if (id == book.Id)
+            try
             {
-                try
-                {
-                    var res = await _bookRepository.UpdateBook(book);
-                    return Ok(res);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(false);
-                }
+                var res = await _bookRepository.UpdateBook(book);
+                return Ok(res);
             }
-            return BadRequest(false);
+            catch (Exception ex)
+            {
+                return BadRequest(false);
+            }
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            var book = await _bookRepository.GetBook(id);
-            if (book == null)
-            {
-                return BadRequest(false);
-            }
-            var res = await _bookRepository.DeleteBook(book);
+            
+            var res = await _bookRepository.DeleteBook(id);
             if (res == true)
             {
-                return Ok(book);
+                return Ok(res);
             }
             return BadRequest(false);
         }

@@ -28,7 +28,7 @@ namespace BookReviewClient.Services
         {
             try
             {
-                var response = await _httpClient.DeleteAsync("api/Book/" + book.Id);
+                var response = await _httpClient.DeleteAsync($"api/Book/{book.Id}");
                 return true;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace BookReviewClient.Services
         {
             try
             {
-                var res = await _httpClient.PutAsJsonAsync($"api/Book/{book.Id}", book);
+                var res = await _httpClient.PutAsJsonAsync($"api/Book", book);
                 return true;
             }
             catch(Exception ex)
