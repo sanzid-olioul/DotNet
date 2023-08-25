@@ -56,12 +56,14 @@
         if (BookCreate == true)
         {
             var res = await bookService.CreateBook(BookModel);
+            await UpdateBookList.InvokeAsync(res);
         }
         if(BookUpdate==true)
         {
             var res = await bookService.UpdateBook(BookModel);
+            await UpdateBookList.InvokeAsync(BookModel);
         }
-        await UpdateBookList.InvokeAsync(BookModel);
+        
         await CloseOverlay.InvokeAsync(true);
     }
 }
